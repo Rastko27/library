@@ -12,6 +12,30 @@
         <div class="library-wrapper" id="library-wrapper">
             
         </div>
+        <button class="cta" id="new-book">NEW BOOK</button>
+        <dialog id="dialog">
+            <h2>Add Your Book</h2>
+            <form class="book-form" id="book-form" action="" method="post">
+                <div class="input-wrapper">
+                    <label for="title-input">Book Title</label>
+                    <input type="text" id="title-input">
+                </div>
+                <div class="input-wrapper">
+                    <label for="author-input">Book Author</label>
+                    <input type="text" id="author-input">
+                </div>
+                <div class="input-wrapper">
+                    <label for="pages-input">Book Pages</label>
+                    <input type="text" id="pages-input">
+                </div>
+                <div class="input-wrapper">
+                    <label for="read-input">Book Read</label>
+                    <input type="text" id="read-input">
+                </div>
+                <button type="submit" class="cta" id="add-book">Add Book</button>
+            </form>
+            <button class="cta" id="dialog-close">Close</button>
+        </dialog>
     </div>
     <script src="script.js"></script>
 </body>

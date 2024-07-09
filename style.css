@@ -38,16 +38,17 @@ p{
 }
 
 .page-wrapper{
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     padding: 15px 25px;
+    gap: 50px;
 }
 
 .library-wrapper{
     width: 100%;
-    padding-top: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -64,4 +65,57 @@ p{
     gap: 40px;
     border: 1px solid black;
     font-size: 20px;
+}
+
+.cta{
+    font-size: 16px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 0px 7px 3px rgba(0,0,0,0.3);
+}
+
+dialog{
+    position:absolute;
+    top: 10vh;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding: 35px 20px;
+    font-size: 16px;
+}
+
+dialog > h2{
+    font-weight: 400;
+}
+
+label{
+    letter-spacing: -1px;
+    word-spacing: --3px;
+}
+
+.book-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    gap: 40px;
+}
+
+input{
+    width: 200px;
+    height: 30px;
+}
+
+.input-wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+#add-book{
+    font-size: 18px;
 }
