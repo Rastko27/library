@@ -9,30 +9,41 @@ function Book(title, author, pages, read) {
 
 function addBookToLibrary(book) {
     myLibrary.push(book);
-    let message = "Added " + book.title + " to library.";
-    return message;
 }
 
 const libraryWrapper = document.getElementById('library-wrapper');
 
+function bookDelete(index){
+    myLibrary.splice(index, 1);
+    displayBooks();
+}
+
 function displayBooks() {
-    for(let book of myLibrary) {
+    libraryWrapper.innerHTML = '';
+    myLibrary.forEach((book, index) => {
         let bookTitle = document.createElement('h2')
         let bookAuthor = document.createElement('p')
         let bookPages = document.createElement('p')
         let bookRead = document.createElement('p')
         let bookDiv = document.createElement('div');
+        let deleteBook = document.createElement('button');
         bookTitle.textContent = book.title;
         bookAuthor.textContent = book.author;
         bookPages.textContent = book.pages;
         bookRead.textContent = book.read;
         bookDiv.classList.add('book');
+        deleteBook.classList.add('cta');
+        deleteBook.textContent = 'Detele Book';
         bookDiv.appendChild(bookTitle);
         bookDiv.appendChild(bookAuthor);
         bookDiv.appendChild(bookPages);
         bookDiv.appendChild(bookRead);
+        bookDiv.appendChild(deleteBook);
         libraryWrapper.appendChild(bookDiv);
-    }
+        deleteBook.addEventListener("click", () => {
+            bookDelete(index);
+        })
+    });
 }
 
 const newBook = document.getElementById('new-book');
@@ -61,4 +72,4 @@ form.addEventListener("submit", (event) => {
     const book = new Book(title, author, pages, read);
     addBookToLibrary(book);
     displayBooks();
-})
+});
