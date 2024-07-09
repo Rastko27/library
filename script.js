@@ -13,8 +13,22 @@ function addBookToLibrary(book) {
 
 const libraryWrapper = document.getElementById('library-wrapper');
 
-function bookDelete(index){
+function bookDelete(index) {
     myLibrary.splice(index, 1);
+    displayBooks();
+}
+
+Book.prototype.toggleRead = function() {
+    if(this.read === "Read") {
+        this.read = "Not read yet";
+    }
+    else{
+        this.read = "Read";
+    }
+}
+
+function readToggle(index) {
+    myLibrary[index].toggleRead();
     displayBooks();
 }
 
@@ -27,22 +41,29 @@ function displayBooks() {
         let bookRead = document.createElement('p')
         let bookDiv = document.createElement('div');
         let deleteBook = document.createElement('button');
+        let readToggleButton = document.createElement('button');
         bookTitle.textContent = book.title;
         bookAuthor.textContent = book.author;
         bookPages.textContent = book.pages;
         bookRead.textContent = book.read;
         bookDiv.classList.add('book');
         deleteBook.classList.add('cta');
+        readToggleButton.classList.add('cta');
         deleteBook.textContent = 'Detele Book';
+        readToggleButton.textContent = 'Read/Not read yet'
         bookDiv.appendChild(bookTitle);
         bookDiv.appendChild(bookAuthor);
         bookDiv.appendChild(bookPages);
         bookDiv.appendChild(bookRead);
         bookDiv.appendChild(deleteBook);
+        bookDiv.appendChild(readToggleButton);
         libraryWrapper.appendChild(bookDiv);
         deleteBook.addEventListener("click", () => {
             bookDelete(index);
-        })
+        });
+        readToggleButton.addEventListener("click", () => {
+            readToggle(index);
+        });
     });
 }
 
