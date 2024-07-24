@@ -88,11 +88,84 @@ const form = document.getElementById('book-form');
 
 form.addEventListener("submit", (event) => {
     event.preventDefault();
-    let title = document.getElementById('title-input').value;
-    let author = document.getElementById('author-input').value;
-    let pages = document.getElementById('pages-input').value;
-    let read = document.getElementById('read-input').value;
-    const book = new Book(title, author, pages, read);
+    const title = document.getElementById('title-input');
+    const author = document.getElementById('author-input');
+    const pages = document.getElementById('pages-input');
+    const read = document.getElementById('read-input');
+
+    // Form validation
+
+    // Reset custom validity messages
+    title.setCustomValidity("");
+    author.setCustomValidity("");
+    pages.setCustomValidity("");
+    read.setCustomValidity("");
+
+    let formIsValid = true;
+
+    // Check for title input
+    if (title.validity.valueMissing) {
+        title.setCustomValidity("Please input title");
+        formIsValid = false;
+    }
+
+    if (!capitalFirstLetter(title.value)) {
+        title.setCustomValidity("Needs to start with a capital letter");
+        formIsValid = false;
+    }
+
+    // Check for author input
+    if (author.validity.valueMissing) {
+        author.setCustomValidity("Please input author");
+        formIsValid = false;
+    }
+
+    if (!capitalFirstLetter(author.value)) {
+        author.setCustomValidity("Needs to start with a capital letter");
+        formIsValid = false;
+    }
+
+    // Check for pages input
+    if (pages.validity.valueMissing) {
+        pages.setCustomValidity("Please input number of pages");
+        formIsValid = false;
+    }
+
+    if (pages.value <= 0) {
+        pages.setCustomValidity("Must be bigger than 0");
+        formIsValid = false;
+    }
+
+    // Check for read input
+    if (read.validity.valueMissing) {
+        read.setCustomValidity("Please indicate if read");
+        formIsValid = false;
+    }
+
+    if (!(read.value === "Read" || read.value === "Not read yet")) {
+        read.setCustomValidity("Input 'Read' or 'Not read yet'");
+    }
+
+    // Trigger form validation
+    if (!formIsValid) {
+        // Trigger the browser's validation UI
+        title.reportValidity();
+        author.reportValidity();
+        pages.reportValidity();
+        read.reportValidity();
+        // Don't add book if form is not valid
+        return;
+    }
+
+    const book = new Book(title.value, author.value, pages.value, read.value);
     addBookToLibrary(book);
     displayBooks();
 });
+
+function capitalFirstLetter(str) {
+    if (str.length === 0) return false;
+    
+    let firstChar = str.charAt(0);
+ 
+    return firstChar >= 'A' && firstChar <= 'Z';
+ }

@@ -15,22 +15,22 @@
         </div>
         <dialog id="dialog">
             <h2>Add Your Book</h2>
-            <form class="book-form" id="book-form" action="" method="post">
+            <form class="book-form" id="book-form" action="" method="post" novalidate>
                 <div class="input-wrapper">
                     <label for="title-input">Book Title</label>
-                    <input type="text" id="title-input">
+                    <input type="text" id="title-input" required>
                 </div>
                 <div class="input-wrapper">
                     <label for="author-input">Book Author</label>
-                    <input type="text" id="author-input">
+                    <input type="text" id="author-input" required>
                 </div>
                 <div class="input-wrapper">
                     <label for="pages-input">Book Pages</label>
-                    <input type="text" id="pages-input">
+                    <input type="number" id="pages-input" required>
                 </div>
                 <div class="input-wrapper">
                     <label for="read-input">Book Read</label>
-                    <input type="text" id="read-input">
+                    <input type="text" id="read-input" required>
                 </div>
                 <button type="submit" class="cta" id="add-book">Add Book</button>
             </form>
